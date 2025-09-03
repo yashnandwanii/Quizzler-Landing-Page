@@ -375,26 +375,26 @@ if (document.readyState === 'loading') {
 }
 
 // Download button click tracking
-document.querySelectorAll('.download-btn').forEach(btn => {
-    btn.addEventListener('click', function (e) {
-        e.preventDefault();
+document.querySelectorAll('.download-btn, .btn-primary').forEach(btn => {
+    // Only apply to download buttons
+    if (btn.href && btn.href.includes('drive.google.com')) {
+        btn.addEventListener('click', function (e) {
+            // Add loading state briefly
+            const originalContent = this.innerHTML;
+            this.innerHTML = `
+                <div class="loading"></div>
+                <div class="btn-text">
+                    <span class="btn-label">Downloading...</span>
+                    <span class="btn-store">Starting download</span>
+                </div>
+            `;
 
-        // Add loading state
-        const originalContent = this.innerHTML;
-        this.innerHTML = `
-            <div class="loading"></div>
-            <div class="btn-text">
-                <span class="btn-label">Downloading...</span>
-                <span class="btn-store">Please wait</span>
-            </div>
-        `;
-
-        // Simulate download process
-        setTimeout(() => {
-            this.innerHTML = originalContent;
-            alert('Download will start shortly. Please check your app store.');
-        }, 2000);
-    });
+            // Restore button after brief loading animation
+            setTimeout(() => {
+                this.innerHTML = originalContent;
+            }, 2000);
+        });
+    }
 });
 
 // Form validation and submission (if contact form exists)
