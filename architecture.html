@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quizzler - System Architecture</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            color: #fff;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .header h1 .emoji {
+            font-size: 2.5rem;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 25px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            padding: 12px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-btn.primary {
+            background: #f59e0b;
+            color: #1a1a2e;
+        }
+
+        .nav-btn.secondary {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .architecture-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .diagram-wrapper {
+            background: #0d1117;
+            border-radius: 16px;
+            padding: 30px;
+            overflow-x: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 1px solid #30363d;
+        }
+
+        .diagram {
+            min-width: 1000px;
+            position: relative;
+        }
+
+        /* Section Labels */
+        .section-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 15px;
+        }
+
+        /* Layer Styles */
+        .layer {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+
+        .layer-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #8b949e;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Component Boxes */
+        .components-row {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .component {
+            border-radius: 10px;
+            padding: 15px 20px;
+            min-width: 160px;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .component:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .component-icon {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+
+        .component-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+
+        .component-subtitle {
+            font-size: 0.75rem;
+            opacity: 0.8;
+        }
+
+        .component-tech {
+            font-size: 0.7rem;
+            opacity: 0.6;
+            margin-top: 5px;
+        }
+
+        /* Color Themes */
+        .flutter-app {
+            background: linear-gradient(135deg, #02569B 0%, #0175C2 100%);
+            border: 2px solid #54C5F8;
+        }
+
+        .state-management {
+            background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+            border: 2px solid #c084fc;
+        }
+
+        .service {
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            border: 2px solid #34d399;
+        }
+
+        .firebase {
+            background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+            border: 2px solid #fcd34d;
+            color: #1a1a2e;
+        }
+
+        .external-api {
+            background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+            border: 2px solid #f87171;
+        }
+
+        .local-storage {
+            background: linear-gradient(135deg, #6366f1 0%, #818cf8 100%);
+            border: 2px solid #a5b4fc;
+        }
+
+        .ai-service {
+            background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+            border: 2px solid #c4b5fd;
+        }
+
+        /* Connections */
+        .connections {
+            position: relative;
+            height: 40px;
+            margin: 10px 0;
+        }
+
+        .connection-line {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .arrow-down {
+            color: #f59e0b;
+            font-size: 1.5rem;
+        }
+
+        .connection-label {
+            font-size: 0.7rem;
+            color: #f59e0b;
+            background: rgba(245, 158, 11, 0.15);
+            padding: 3px 10px;
+            border-radius: 10px;
+            margin: 5px 0;
+        }
+
+        /* Data Flow Section */
+        .data-flow {
+            margin-top: 50px;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .flow-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #f59e0b;
+        }
+
+        .flow-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .flow-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 18px;
+            border-left: 4px solid;
+        }
+
+        .flow-card.auth {
+            border-color: #f59e0b;
+        }
+
+        .flow-card.quiz {
+            border-color: #10b981;
+        }
+
+        .flow-card.ai {
+            border-color: #8b5cf6;
+        }
+
+        .flow-card.data {
+            border-color: #3b82f6;
+        }
+
+        .flow-card h4 {
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .flow-card p {
+            font-size: 0.8rem;
+            color: #8b949e;
+            line-height: 1.6;
+        }
+
+        /* Tech Stack */
+        .tech-stack {
+            margin-top: 40px;
+        }
+
+        .tech-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #f59e0b;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .tech-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .tech-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(5px);
+        }
+
+        .tech-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .tech-info h5 {
+            font-size: 0.9rem;
+            margin-bottom: 3px;
+        }
+
+        .tech-info span {
+            font-size: 0.75rem;
+            color: #8b949e;
+        }
+
+        /* Legend */
+        .legend {
+            margin-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+            color: #8b949e;
+        }
+
+        .legend-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 4px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .components-row {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .component {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <h1>
+            <span class="emoji">🧠</span>
+            Quizzler System Architecture
+        </h1>
+        <p>Complete Quiz Application Ecosystem - Technical Overview</p>
+        <div class="nav-buttons">
+            <a href="index.html" class="nav-btn primary">
+                <i class="fas fa-arrow-left"></i>
+                Back to Landing Page
+            </a>
+            <a href="https://github.com/yashnandwanii/Quizzler" class="nav-btn secondary" target="_blank">
+                <i class="fab fa-github"></i>
+                View Source Code
+            </a>
+        </div>
+    </header>
+
+    <div class="architecture-container">
+        <div class="diagram-wrapper">
+            <div class="diagram">
+
+                <!-- Presentation Layer -->
+                <div class="layer">
+                    <div class="layer-title">
+                        <i class="fas fa-mobile-alt"></i>
+                        PRESENTATION LAYER (Flutter UI)
+                    </div>
+                    <div class="components-row">
+                        <div class="component flutter-app">
+                            <div class="component-icon">🏠</div>
+                            <div class="component-title">Home Screen</div>
+                            <div class="component-subtitle">Dashboard & Quick Actions</div>
+                            <div class="component-tech">Daily Challenges</div>
+                        </div>
+                        <div class="component flutter-app">
+                            <div class="component-icon">📚</div>
+                            <div class="component-title">Categories</div>
+                            <div class="component-subtitle">50+ Quiz Topics</div>
+                            <div class="component-tech">Grid Layout</div>
+                        </div>
+                        <div class="component flutter-app">
+                            <div class="component-icon">❓</div>
+                            <div class="component-title">Quiz Screen</div>
+                            <div class="component-subtitle">Question Interface</div>
+                            <div class="component-tech">Timer & Progress</div>
+                        </div>
+                        <div class="component flutter-app">
+                            <div class="component-icon">📊</div>
+                            <div class="component-title">Results</div>
+                            <div class="component-subtitle">Score & Analytics</div>
+                            <div class="component-tech">Performance Stats</div>
+                        </div>
+                        <div class="component flutter-app">
+                            <div class="component-icon">🏆</div>
+                            <div class="component-title">Leaderboard</div>
+                            <div class="component-subtitle">Global Rankings</div>
+                            <div class="component-tech">Real-time Sync</div>
+                        </div>
+                        <div class="component flutter-app">
+                            <div class="component-icon">👤</div>
+                            <div class="component-title">Profile</div>
+                            <div class="component-subtitle">User Dashboard</div>
+                            <div class="component-tech">Coins & Achievements</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Connection Arrow -->
+                <div class="connections">
+                    <div class="connection-line">
+                        <span class="connection-label">GetX Reactive Binding</span>
+                        <i class="fas fa-arrows-alt-v arrow-down"></i>
+                    </div>
+                </div>
+
+                <!-- State Management Layer -->
+                <div class="layer">
+                    <div class="layer-title">
+                        <i class="fas fa-layer-group"></i>
+                        STATE MANAGEMENT (GetX)
+                    </div>
+                    <div class="components-row">
+                        <div class="component state-management">
+                            <div class="component-icon">🔐</div>
+                            <div class="component-title">Auth Repository</div>
+                            <div class="component-subtitle">Authentication State</div>
+                            <div class="component-tech">Login/Logout Flow</div>
+                        </div>
+                        <div class="component state-management">
+                            <div class="component-icon">👥</div>
+                            <div class="component-title">User Repository</div>
+                            <div class="component-subtitle">User Data Management</div>
+                            <div class="component-tech">Profile CRUD</div>
+                        </div>
+                        <div class="component state-management">
+                            <div class="component-icon">💰</div>
+                            <div class="component-title">Coin Sync Service</div>
+                            <div class="component-subtitle">Currency Management</div>
+                            <div class="component-tech">Real-time Updates</div>
+                        </div>
+                        <div class="component state-management">
+                            <div class="component-icon">⚙️</div>
+                            <div class="component-title">Settings Service</div>
+                            <div class="component-subtitle">App Preferences</div>
+                            <div class="component-tech">Persistent Config</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Connection Arrow -->
+                <div class="connections">
+                    <div class="connection-line">
+                        <span class="connection-label">Service Layer Communication</span>
+                        <i class="fas fa-arrows-alt-v arrow-down"></i>
+                    </div>
+                </div>
+
+                <!-- Services Layer -->
+                <div class="layer">
+                    <div class="layer-title">
+                        <i class="fas fa-cogs"></i>
+                        BUSINESS LOGIC SERVICES
+                    </div>
+                    <div class="components-row">
+                        <div class="component service">
+                            <div class="component-icon">📝</div>
+                            <div class="component-title">Quiz API Service</div>
+                            <div class="component-subtitle">Fetch Questions</div>
+                            <div class="component-tech">HTTP Client</div>
+                        </div>
+                        <div class="component service">
+                            <div class="component-icon">🏅</div>
+                            <div class="component-title">Achievements</div>
+                            <div class="component-subtitle">Badge System</div>
+                            <div class="component-tech">Progress Tracking</div>
+                        </div>
+                        <div class="component service">
+                            <div class="component-icon">📈</div>
+                            <div class="component-title">Leaderboard</div>
+                            <div class="component-subtitle">Ranking System</div>
+                            <div class="component-tech">Score Calculation</div>
+                        </div>
+                        <div class="component service">
+                            <div class="component-icon">🎯</div>
+                            <div class="component-title">Daily Challenge</div>
+                            <div class="component-subtitle">Daily Goals</div>
+                            <div class="component-tech">Streak Logic</div>
+                        </div>
+                        <div class="component service">
+                            <div class="component-icon">📂</div>
+                            <div class="component-title">Category Service</div>
+                            <div class="component-subtitle">Topic Management</div>
+                            <div class="component-tech">Dynamic Categories</div>
+                        </div>
+                        <div class="component service">
+                            <div class="component-icon">📜</div>
+                            <div class="component-title">Quiz History</div>
+                            <div class="component-subtitle">Past Attempts</div>
+                            <div class="component-tech">Analytics Data</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Connection Arrow -->
+                <div class="connections">
+                    <div class="connection-line">
+                        <span class="connection-label">API Requests & Data Sync</span>
+                        <i class="fas fa-arrows-alt-v arrow-down"></i>
+                    </div>
+                </div>
+
+                <!-- External Services Layer -->
+                <div class="layer">
+                    <div class="layer-title">
+                        <i class="fas fa-cloud"></i>
+                        EXTERNAL SERVICES & APIs
+                    </div>
+                    <div class="components-row">
+                        <div class="component ai-service">
+                            <div class="component-icon">🤖</div>
+                            <div class="component-title">Gemini AI</div>
+                            <div class="component-subtitle">Quiz Generation</div>
+                            <div class="component-tech">google_generative_ai</div>
+                        </div>
+                        <div class="component external-api">
+                            <div class="component-icon">🌐</div>
+                            <div class="component-title">Quiz API</div>
+                            <div class="component-subtitle">Question Database</div>
+                            <div class="component-tech">quizapi.io</div>
+                        </div>
+                        <div class="component firebase">
+                            <div class="component-icon">🔥</div>
+                            <div class="component-title">Firebase Auth</div>
+                            <div class="component-subtitle">Authentication</div>
+                            <div class="component-tech">Google Sign-In</div>
+                        </div>
+                        <div class="component firebase">
+                            <div class="component-icon">☁️</div>
+                            <div class="component-title">Cloud Firestore</div>
+                            <div class="component-subtitle">NoSQL Database</div>
+                            <div class="component-tech">Real-time Sync</div>
+                        </div>
+                        <div class="component local-storage">
+                            <div class="component-icon">💾</div>
+                            <div class="component-title">GetStorage</div>
+                            <div class="component-subtitle">Local Cache</div>
+                            <div class="component-tech">Offline Support</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Data Flow Explanation -->
+        <div class="data-flow">
+            <h3 class="flow-title">
+                <i class="fas fa-exchange-alt"></i>
+                Key Data Flows
+            </h3>
+            <div class="flow-grid">
+                <div class="flow-card auth">
+                    <h4><i class="fas fa-user-shield"></i> Authentication Flow</h4>
+                    <p>User signs in via Google OAuth → Firebase Auth validates credentials → User profile is
+                        created/fetched from Firestore → Session stored in GetStorage for persistence → App navigates to
+                        Home Screen.</p>
+                </div>
+                <div class="flow-card quiz">
+                    <h4><i class="fas fa-question-circle"></i> Quiz Flow</h4>
+                    <p>User selects category → Quiz API Service fetches questions from quizapi.io → Questions displayed
+                        with timer → Answers validated → Score calculated → Results saved to Firestore → Leaderboard
+                        updated.</p>
+                </div>
+                <div class="flow-card ai">
+                    <h4><i class="fas fa-robot"></i> AI Revision Flow</h4>
+                    <p>Wrong answers collected from quiz history → Gemini AI generates personalized revision questions →
+                        Custom quiz created with adaptive difficulty → Progress tracked for improvement analytics.</p>
+                </div>
+                <div class="flow-card data">
+                    <h4><i class="fas fa-sync-alt"></i> Data Synchronization</h4>
+                    <p>Coins cached locally with 30-second validity → Force refresh from Firebase when needed →
+                        Leaderboard ranks recalculated on score update → Achievements checked after each quiz
+                        completion.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tech Stack Section -->
+        <div class="tech-stack">
+            <h3 class="tech-title">🛠️ Technology Stack</h3>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <div class="tech-icon" style="background: #02569B;">
+                        <i class="fab fa-flutter" style="color: #54C5F8;"></i>
+                    </div>
+                    <div class="tech-info">
+                        <h5>Flutter</h5>
+                        <span>Cross-platform UI Framework</span>
+                    </div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon" style="background: #7c3aed;">
+                        <i class="fas fa-code" style="color: white;"></i>
+                    </div>
+                    <div class="tech-info">
+                        <h5>Dart</h5>
+                        <span>Programming Language</span>
+                    </div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon" style="background: #f59e0b;">
+                        <i class="fas fa-fire" style="color: #1a1a2e;"></i>
+                    </div>
+                    <div class="tech-info">
+                        <h5>Firebase</h5>
+                        <span>Auth, Firestore, Hosting</span>
+                    </div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon" style="background: #8b5cf6;">
+                        <i class="fas fa-robot" style="color: white;"></i>
+                    </div>
+                    <div class="tech-info">
+                        <h5>Gemini AI</h5>
+                        <span>Quiz Generation & Revision</span>
+                    </div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon" style="background: #10b981;">
+                        <i class="fas fa-cubes" style="color: white;"></i>
+                    </div>
+                    <div class="tech-info">
+                        <h5>GetX</h5>
+                        <span>State Management & DI</span>
+                    </div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon" style="background: #3b82f6;">
+                        <i class="fas fa-database" style="color: white;"></i>
+                    </div>
+                    <div class="tech-info">
+                        <h5>GetStorage</h5>
+                        <span>Local Data Persistence</span>
+                    </div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon" style="background: #dc2626;">
+                        <i class="fas fa-globe" style="color: white;"></i>
+                    </div>
+                    <div class="tech-info">
+                        <h5>Quiz API</h5>
+                        <span>External Question Bank</span>
+                    </div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon" style="background: #6366f1;">
+                        <i class="fas fa-shield-alt" style="color: white;"></i>
+                    </div>
+                    <div class="tech-info">
+                        <h5>OAuth 2.0</h5>
+                        <span>Google Sign-In</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Legend -->
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-dot" style="background: linear-gradient(135deg, #02569B, #0175C2);"></div>
+                <span>Flutter UI Screens</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot" style="background: linear-gradient(135deg, #7c3aed, #a855f7);"></div>
+                <span>State Management</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot" style="background: linear-gradient(135deg, #059669, #10b981);"></div>
+                <span>Business Services</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot" style="background: linear-gradient(135deg, #f59e0b, #fbbf24);"></div>
+                <span>Firebase Services</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot" style="background: linear-gradient(135deg, #dc2626, #ef4444);"></div>
+                <span>External APIs</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot" style="background: linear-gradient(135deg, #8b5cf6, #a78bfa);"></div>
+                <span>AI Services</span>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

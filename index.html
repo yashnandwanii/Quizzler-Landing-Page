@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quizzler - The Ultimate Knowledge Challenge</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="logo.png" alt="Quizzler Logo" class="logo-img">
+                <span class="logo-text">Quizzler</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#how-it-works" class="nav-link">How It Works</a>
+                <a href="architecture.html" class="nav-link">Architecture</a>
+                <a href="#download" class="nav-link">Download</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Test Your Knowledge.<br>
+                    <span class="hero-highlight">Challenge Your Mind.</span>
+                </h1>
+                <p class="hero-description">
+                    The ultimate quiz experience with AI-powered revision, smart streak tracking,
+                    and personalized learning insights. Master any topic with intelligent question generation.
+                </p>
+                <div class="hero-buttons">
+                    <a href="https://drive.google.com/uc?export=download&id=1dMfK1PkBnaTQq3lx4HLvkkl_orMizw4l"
+                        class="btn btn-primary" download="Quizzler.apk">
+                        <i class="fab fa-android"></i>
+                        Download for Android
+                    </a>
+                    <a href="#features" class="btn btn-secondary">
+                        <i class="fas fa-play"></i>
+                        See Features
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">10K+</span>
+                        <span class="stat-label">Questions</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">7+</span>
+                        <span class="stat-label">Categories</span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="phone-mockup">
+                    <img src="Welcome_screen.png" alt="Quizzler Welcome Screenshot" class="app-screenshot">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Everything You Need to Master Knowledge</h2>
+                <p class="section-description">
+                    From AI-powered revision to advanced analytics. Quizzler gives you the tools
+                    to track progress and accelerate learning.
+                </p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="feature-title">AI-Powered Revision</h3>
+                    <p class="feature-description">
+                        Smart AI generates personalized revision questions from your wrong answers,
+                        helping you master difficult concepts faster.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <h3 class="feature-title">Advanced Streak System</h3>
+                    <p class="feature-description">
+                        Daily-based streak tracking with comprehensive analytics.
+                        Stay motivated with visual progress indicators and achievements.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="feature-title">Performance Analytics</h3>
+                    <p class="feature-description">
+                        Track your learning journey with detailed statistics, progress charts,
+                        and personalized insights to optimize your study sessions.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h3 class="feature-title">Quiz History</h3>
+                    <p class="feature-description">
+                        Complete history of all your quiz attempts with filtering,
+                        detailed results, and performance trends over time.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="feature-title">Google Integration</h3>
+                    <p class="feature-description">
+                        Seamless Google Sign-In with cloud sync.
+                        Access your progress across devices with secure authentication.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Beautiful Interface</h3>
+                    <p class="feature-description">
+                        Clean, intuitive design optimized for mobile learning.
+                        Responsive UI that adapts to your device perfectly.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">How Quizzler Works</h2>
+                <p class="section-description">
+                    Simple, effective, and intelligent. Master any topic in three easy steps.
+                </p>
+            </div>
+
+            <div class="steps-container">
+                <div class="step-item">
+                    <div class="step-image">
+                        <img src="category_screen.png" alt="Choose Quiz Category" class="step-screenshot">
+                    </div>
+                    <div class="step-content">
+                        <div class="step-number">01</div>
+                        <h3 class="step-title">Choose Your Challenge</h3>
+                        <p class="step-description">
+                            Select from 50+ categories across various subjects.
+                            From science to literature, find quizzes that match your interests and learning goals.
+                        </p>
+                        <ul class="step-features">
+                            <li><i class="fas fa-check"></i> Multiple difficulty levels</li>
+                            <li><i class="fas fa-check"></i> Curated question sets</li>
+                            <li><i class="fas fa-check"></i> Topic-specific challenges</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="step-item reverse">
+                    <div class="step-image">
+                        <img src="quiz_screen.png" alt="Answer Questions" class="step-screenshot">
+                    </div>
+                    <div class="step-content">
+                        <div class="step-number">02</div>
+                        <h3 class="step-title">Test Your Knowledge</h3>
+                        <p class="step-description">
+                            Engage with carefully crafted questions designed to challenge and educate.
+                            Real-time feedback helps you learn as you progress through each quiz.
+                        </p>
+                        <ul class="step-features">
+                            <li><i class="fas fa-check"></i> Instant feedback</li>
+                            <li><i class="fas fa-check"></i> Detailed explanations</li>
+                            <li><i class="fas fa-check"></i> Progress tracking</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-image">
+                        <img src="revision_quiz_screen.png" alt="AI Revision" class="step-screenshot">
+                    </div>
+                    <div class="step-content">
+                        <div class="step-number">03</div>
+                        <h3 class="step-title">AI-Powered Learning</h3>
+                        <p class="step-description">
+                            Our intelligent system analyzes your mistakes and generates personalized revision questions.
+                            Turn weaknesses into strengths with targeted practice.
+                        </p>
+                        <ul class="step-features">
+                            <li><i class="fas fa-check"></i> Personalized revision</li>
+                            <li><i class="fas fa-check"></i> Adaptive difficulty</li>
+                            <li><i class="fas fa-check"></i> Smart recommendations</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Demo Section -->
+    <section class="video-demo">
+        <div class="container">
+            <div class="video-demo-content">
+                <div class="video-demo-text">
+                    <h2 class="video-demo-title">See Quizzler in Action</h2>
+                    <p class="video-demo-description">
+                        Watch our interactive demo to see how Quizzler's AI-powered features
+                        work seamlessly to enhance your learning experience.
+                    </p>
+                    <ul class="video-demo-features">
+                        <li><i class="fas fa-play-circle"></i> Complete app walkthrough</li>
+                        <li><i class="fas fa-brain"></i> AI quiz generation demo</li>
+                        <li><i class="fas fa-chart-line"></i> Performance tracking showcase</li>
+                        <li><i class="fas fa-mobile-alt"></i> Mobile-optimized interface</li>
+                    </ul>
+                </div>
+                <div class="video-demo-video video-item" data-youtube-id="-FElALrlQyw">
+                    <img src="Welcome_screen.png" alt="Quizzler Demo Video" class="video-thumbnail">
+                    <div class="video-play-overlay">
+                        <div class="video-play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screenshots Gallery -->
+    <section class="screenshots">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">App Screenshots</h2>
+                <p class="section-description">
+                    Explore every feature through our comprehensive screenshot gallery
+                </p>
+            </div>
+
+            <div class="screenshots-grid">
+                <div class="screenshot-item">
+                    <img src="category_screen.png" alt="Category Selection" class="screenshot-image">
+                    <div class="screenshot-overlay">
+                        <h4>Choose Category</h4>
+                        <p>Browse through 50+ quiz categories</p>
+                    </div>
+                </div>
+                <div class="screenshot-item">
+                    <img src="quiz_screen.png" alt="Quiz Interface" class="screenshot-image">
+                    <div class="screenshot-overlay">
+                        <h4>Quiz Interface</h4>
+                        <p>Intuitive question display with progress tracking</p>
+                    </div>
+                </div>
+                <div class="screenshot-item">
+                    <img src="results_screen.png" alt="Results Screen" class="screenshot-image">
+                    <div class="screenshot-overlay">
+                        <h4>Results & Analytics</h4>
+                        <p>Detailed performance analysis and insights</p>
+                    </div>
+                </div>
+                <div class="screenshot-item">
+                    <img src="ai_quiz_screen.png" alt="AI Quiz Generator" class="screenshot-image">
+                    <div class="screenshot-overlay">
+                        <h4>AI Quiz Generator</h4>
+                        <p>Create custom quizzes powered by AI</p>
+                    </div>
+                </div>
+                <div class="screenshot-item">
+                    <img src="revision_quiz_screen.png" alt="AI Revision" class="screenshot-image">
+                    <div class="screenshot-overlay">
+                        <h4>AI Revision</h4>
+                        <p>Personalized questions from wrong answers</p>
+                    </div>
+                </div>
+                <div class="screenshot-item">
+                    <img src="leaderboard_screen.png" alt="Leaderboard Screen" class="screenshot-image">
+                    <div class="screenshot-overlay">
+                        <h4>Leaderboard</h4>
+                        <p>Compete and see your rank among peers</p>
+                    </div>
+                </div>
+                <div class="screenshot-item">
+                    <img src="profile_screen.png" alt="Profile Screen" class="screenshot-image">
+                    <div class="screenshot-overlay">
+                        <h4>Profile</h4>
+                        <p>Track coins, achievements and profile information</p>
+                    </div>
+                </div>
+                <div class="screenshot-item">
+                    <img src="quiz_history_screen.png" alt="History Screen" class="screenshot-image">
+                    <div class="screenshot-overlay">
+                        <h4>Quiz History</h4>
+                        <p>Complete learning journey with streak tracking</p>
+                    </div>
+                </div>
+                <div class="screenshot-item">
+                    <img src="review_section.png" alt="Review Section" class="screenshot-image">
+                    <div class="screenshot-overlay">
+                        <h4>Review</h4>
+                        <p>Review incorrect answers and explanations</p>
+                    </div>
+                </div>
+                <div class="screenshot-item">
+                    <img src="homescreen.png" alt="Home Screen - Let's Start" class="screenshot-image">
+                    <div class="screenshot-overlay">
+                        <h4>Ready to Start?</h4>
+                        <p>Your learning journey begins here</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section class="architecture-preview" id="architecture">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">System Architecture</h2>
+                <p class="section-description">
+                    Explore the technical foundation that powers Quizzler's intelligent learning platform
+                </p>
+            </div>
+
+            <div class="architecture-content">
+                <div class="architecture-visual">
+                    <div class="arch-diagram">
+                        <div class="arch-layer">
+                            <div class="arch-label">Presentation</div>
+                            <div class="arch-items">
+                                <div class="arch-item flutter">
+                                    <i class="fas fa-mobile-alt"></i>
+                                    <span>Flutter UI</span>
+                                </div>
+                                <div class="arch-item flutter">
+                                    <i class="fas fa-th-large"></i>
+                                    <span>6 Core Screens</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="arch-connector">
+                            <i class="fas fa-arrow-down"></i>
+                        </div>
+                        <div class="arch-layer">
+                            <div class="arch-label">State</div>
+                            <div class="arch-items">
+                                <div class="arch-item getx">
+                                    <i class="fas fa-layer-group"></i>
+                                    <span>GetX</span>
+                                </div>
+                                <div class="arch-item getx">
+                                    <i class="fas fa-database"></i>
+                                    <span>Repositories</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="arch-connector">
+                            <i class="fas fa-arrow-down"></i>
+                        </div>
+                        <div class="arch-layer">
+                            <div class="arch-label">Services</div>
+                            <div class="arch-items">
+                                <div class="arch-item service">
+                                    <i class="fas fa-cogs"></i>
+                                    <span>16 Services</span>
+                                </div>
+                                <div class="arch-item ai">
+                                    <i class="fas fa-robot"></i>
+                                    <span>Gemini AI</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="arch-connector">
+                            <i class="fas fa-arrow-down"></i>
+                        </div>
+                        <div class="arch-layer">
+                            <div class="arch-label">Backend</div>
+                            <div class="arch-items">
+                                <div class="arch-item firebase">
+                                    <i class="fas fa-fire"></i>
+                                    <span>Firebase</span>
+                                </div>
+                                <div class="arch-item api">
+                                    <i class="fas fa-globe"></i>
+                                    <span>Quiz API</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="architecture-info">
+                    <h3>Built with Modern Technologies</h3>
+                    <p>
+                        Quizzler leverages a robust architecture combining Flutter's cross-platform capabilities
+                        with Firebase's real-time database and Google's Gemini AI for intelligent quiz generation.
+                    </p>
+                    <ul class="arch-highlights">
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <strong>GetX State Management:</strong> Reactive bindings for seamless UI updates
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <strong>Firebase Integration:</strong> Real-time sync, authentication & cloud storage
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <strong>AI-Powered Features:</strong> Gemini AI generates personalized revision quizzes
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <strong>Modular Services:</strong> 16 specialized services for scalability
+                        </li>
+                    </ul>
+                    <a href="architecture.html" class="btn btn-architecture">
+                        <i class="fas fa-project-diagram"></i>
+                        View Full Architecture Diagram
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section class="download" id="download">
+        <div class="container">
+            <div class="download-content">
+                <div class="download-text">
+                    <h2 class="download-title">Ready to Challenge Your Mind?</h2>
+                    <p class="download-description">
+                        Join thousands of learners who are already improving their knowledge with Quizzler.
+                        Download now and start your learning journey today.
+                    </p>
+                    <div class="download-buttons">
+                        <a href="https://drive.google.com/uc?export=download&id=1dMfK1PkBnaTQq3lx4HLvkkl_orMizw4l"
+                            class="download-btn apk" download="Quizzler.apk">
+                            <div class="btn-icon">
+                                <i class="fas fa-download"></i>
+                            </div>
+                            <div class="btn-text">
+                                <span class="btn-label">Download</span>
+                                <span class="btn-store">APK File</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="download-info">
+                        <div class="info-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>100% Secure</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-gift"></i>
+                            <span>Free to Download</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>Android 5.0+</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="download-image">
+                    <img src="Welcome_screen.png" alt="Quizzler App Preview" class="preview-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="logo.png" alt="Quizzler Logo" class="footer-logo-img">
+                        <span class="footer-logo-text">Quizzler</span>
+                    </div>
+                    <p class="footer-description">
+                        Quizzler is designed for knowledge enthusiasts, students, and lifelong learners
+                        who want to challenge themselves and track their learning progress with intelligent insights.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/yash-nandwani/" class="social-link" target="_blank">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://github.com/yashnandwanii/Quizzler" class="social-link" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-title">Features</h4>
+                    <ul class="footer-links">
+                        <li><a href="#features">AI-Powered Revision</a></li>
+                        <li><a href="#features">Streak System</a></li>
+                        <li><a href="#features">Performance Analytics</a></li>
+                        <li><a href="#features">Quiz History</a></li>
+                        <li><a href="architecture.html">System Architecture</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-title">Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Bug Report</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-title">Contact Us</h4>
+                    <div class="contact-info">
+                        <p class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            yashnandwani47@gmail.com
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p class="copyright">
+                        © 2025 Yash Nandwani. All rights reserved.
+                    </p>
+                    <div class="footer-bottom-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
